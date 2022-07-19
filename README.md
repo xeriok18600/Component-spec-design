@@ -2,6 +2,8 @@
 
 ## 開發環境為: Vue 3
 
+## 開發項目: 圖片輪播套件, 自動填入
+
 ## 圖片輪播套件
 
 檔案位置: /component-spec-design/src/components/ImageSlideShow.vue
@@ -81,4 +83,128 @@ export default {
   }
 }
 </script>
+```
+
+---
+
+## 自動填入
+
+檔案位置: /component-spec-design/src/components/AutocompleteInput.vue
+
+### Props
+
+| Name | Type | Default | Description |
+| :-----| ----: | :----: | :----:|
+| list | Array | [ ] | 傳入要搜尋的資料 |
+| value | String | '' | 輸入框的值|
+| placeholder | String | '' | 輸入框顯示字|
+
+
+### Slots
+
+| Name | Description |
+| :-----: | :----:|
+| default | 可替換搜尋不符時顯示的文字  |
+
+
+### Examples
+![FireShot Capture 050 - component-spec-design - localhost](https://user-images.githubusercontent.com/31687242/179753880-8d249056-7cc7-4f9e-92c2-279c2d8ce43b.png)
+
+
+```
+<template>
+  <h1>自動輸入 {{search}}</h1>
+  <AutocompleteInput v-model="search" :list="filterList" :placeholder="'請輸入單字'"></AutocompleteInput>
+  
+</template>
+
+<script>
+import AutocompleteInput from './components/AutocompleteInput.vue'
+export default {
+  name: 'App',
+  components: {
+    AutocompleteInput
+  },
+  data(){
+    return {
+      search: '',
+      filterList: ['Apple','Book','Cat']
+    }
+  }
+}
+</script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+ button {
+        background: rgba(0,0,0,.3);
+        color: #ffffff;
+        border:0;
+        outline: none;
+        cursor: pointer;
+        width: 50px;
+        height: 50px;
+        font-size: 30px;
+    }
+</style>
+
+```
+
+#### Slots Sample
+![FireShot Capture 051 - component-spec-design - localhost](https://user-images.githubusercontent.com/31687242/179754503-04f71793-f692-467d-9a7e-3fc6182bc4e8.png)
+
+```
+<template>
+  <h1>自動輸入 {{search}}</h1>
+  <AutocompleteInput v-model="search" :list="filterList" :placeholder="'請輸入單字'">
+     <h1>就是找不到</h1>
+  </AutocompleteInput>
+  
+</template>
+
+<script>
+import AutocompleteInput from './components/AutocompleteInput.vue'
+export default {
+  name: 'App',
+  components: {
+    AutocompleteInput
+  },
+  data(){
+    return {
+      search: '',
+      filterList: ['Apple','Book','Cat']
+    }
+  }
+}
+</script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+ button {
+        background: rgba(0,0,0,.3);
+        color: #ffffff;
+        border:0;
+        outline: none;
+        cursor: pointer;
+        width: 50px;
+        height: 50px;
+        font-size: 30px;
+    }
+</style>
 ```
